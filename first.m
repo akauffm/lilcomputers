@@ -1,8 +1,10 @@
 #import <Foundation/Foundation.h>
 
 @interface YourClass : NSObject
-
-- (void) goodbye;
+{
+	NSString* byestring;
+}
+- (NSString*) goodbye;
 
 @end
 
@@ -24,9 +26,10 @@
 	return self;
 }
 
-- (void) goodbye
+- (NSString*) goodbye
 {
-	NSLog(@"Goodbye, nice seeing you!");
+	byestring = @"Goodbye, nice seeing you!";
+	return(byestring);
 }
 
 - (void) dealloc
@@ -93,11 +96,14 @@ int main(int argc, char**argv)
 	MyClass *instance = [[MyClass alloc] init];
 	[instance hello];
 	
-	YourClass *myinstance = [[YourClass alloc] init];
-	[myinstance goodbye];
+	YourClass *jeremy = [[YourClass alloc] init];
+	
+	[instance setFriend: jeremy];
 	
 	[instance setMyFloat: 10.0f];
 	NSLog(@"new value is %f", [instance myFloat]);
+	
+	NSLog(@"This is my friend %@ and he says '%@'", [instance friend], [[instance friend] goodbye]);
 	
 	[pool release];
 	
