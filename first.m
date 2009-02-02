@@ -9,6 +9,7 @@
 @interface MyClass : NSObject
 {
 	float myFloat;
+	YourClass* friend;
 }
 
 - (void) hello;
@@ -62,6 +63,19 @@
 {
 	return myFloat;
 }
+
+- (void) setFriend:(YourClass*)buddy
+{
+	[buddy retain];
+	[friend release];
+	friend = buddy;
+}
+
+- (YourClass*)friend
+{
+	return friend;
+}
+
 
 - (void) dealloc
 {
